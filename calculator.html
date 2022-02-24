@@ -1,82 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>計算機</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>計算機</title>
     <link rel="stylesheet" type="text/css" href="./calculator.css" />
   </head>
   <body>
-    <div class="wrap">
-      <div class="calculator">
-        <div class="calculator_content">
-          <p class="content"></p>
-          <p class="answer"></p>
+    <div class="calculator">
+      <div class="calculator_output">
+        <div class="previous_operand"></div>
+        <div class="current_operand"></div>
+      </div>
+      <div class="calculator_content">
+        <div class="calculator_item">
+          <button>AC</button>
+          <button>DEL</button>
+          <button>X!</button>
+          <button>/</button>
         </div>
-        <div class="calculator_center">
-          <ul class="calculator_number">
-            <li class="number">
-              <p>9</p>
-            </li>
-            <li class="number">
-              <p>8</p>
-            </li>
-            <li class="number">
-              <p>7</p>
-            </li>
-            <li class="number">
-              <p>6</p>
-            </li>
-            <li class="number">
-              <p>5</p>
-            </li>
-            <li class="number">
-              <p>4</p>
-            </li>
-            <li class="number">
-              <p>3</p>
-            </li>
-            <li class="number">
-              <p>2</p>
-            </li>
-            <li class="number">
-              <p>1</p>
-            </li>
-            <li class="number">
-              <p>0</p>
-            </li>
-            <li class="number">
-              <p>00</p>
-            </li>
-            <li class="number">
-              <p>.</p>
-            </li>
-          </ul>
-          <ul class="calculator_symbol">
-            <li class="number">
-              <p>÷</p>
-            </li>
-            <li class="number">
-              <p>×</p>
-            </li>
-            <li class="number">
-              <p>+</p>
-            </li>
-            <li class="number">
-              <p>-</p>
-            </li>
-          </ul>
+        <div class="calculator_item">
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>*</button>
         </div>
-        <ul class="calculator_footer">
-          <li class="number">
-            <p>AC</p>
-          </li>
-          <li class="number">
-            <p>⌫</p>
-          </li>
-          <li class="number equal">
-            <p>=</p>
-          </li>
-        </ul>
+        <div class="calculator_item">
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>-</button>
+        </div>
+        <div class="calculator_item">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>+</button>
+        </div>
+        <div class="calculator_item">
+          <button>0</button>
+          <button>00</button>
+          <button>.</button>
+          <button>=</button>
+        </div>
       </div>
     </div>
     <script src="src/index.js"></script>
