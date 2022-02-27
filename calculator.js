@@ -66,13 +66,19 @@ class Calculator {
   }
 
   //階層式計算
-  //只能是正整數
-  factorial(num) {
-    let factorialNum = this.currentOperandTextElement
-    if (num === 0) return 1;
-    if (num >= 1) return num * recursive(num - 1)
+  //只能是正整數，負數或是0都回傳1
+  getfactorial(current) {
+    if (isNaN(current)) return
+    if (current <= 1) {
+      this.currentOperand = 1
+    }
+    this.currentOperand = this.factorial(current)
   }
-
+  //階層式計算公式
+  factorial(num) {
+    if (num <= 1) return 1
+    return num * this.factorial(num - 1)
+  }
 
   getDisplayNum(number) {
     const stringNum = number.toString()
@@ -159,6 +165,6 @@ deleteButton.addEventListener('click', () => {
 
 //階層式
 factorialButton.addEventListener('click', () => {
-  calculator.factorial(console.log("階層式運算"))
+  calculator.getfactorial(parseFloat(calculator.currentOperand))
   calculator.updateDisplay()
-})
+})  

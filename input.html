@@ -6,17 +6,34 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
-    <form action="" method="get">
+    <form>
       <div class="input_name">
-        請輸入您的姓名:
+        <label for="user">請輸入您的姓名:</label>
         <br />
-        <input type="text" placeholder="請輸入英文或是中文姓名" />
+        <input
+          type="text"
+          placeholder="請輸入英文或是中文姓名"
+          name="user"
+          id="user"
+          maxlength="20"
+        />
       </div>
-      <div class="submit">
-        <input type="submit" value="提交" />
+      <div>
+        <input id="submit" type="submit" value="提交" />
       </div>
     </form>
-
-    <script src="src/index.js"></script>
   </body>
 </html>
+<script language="javascript">
+  //檢查輸入內容是否符合條件
+  function check(e) {
+    e.preventDefault();
+    const input = document.querySelector("#user");
+    let val = input.value;
+    let pattern = /^([a-zA-Z\u4e00-\u9fa5\·]{1,10})$/;
+    if (pattern.test(val)) {
+      window.location.href = "/calculator.html";
+    }
+  }
+  document.querySelector("#submit").addEventListener("click", check, false);
+</script>
