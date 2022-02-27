@@ -3,17 +3,25 @@ class Calculator {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
     this.clear()
+
   }
+
   //清除
   clear() {
-    this.currentOperand = ""
+    this.currentOperand = "0"
     this.previousOperand = ""
     this.operation = undefined
   }
 
   //刪除
   delete() {
-    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    const NumberCurrentOperand = Number(this.currentOperand);
+    // NumberCurrentOperand 為 0 或 NaN 不執行。
+    // NaN 和 0 本身是 falsy 
+    // 所以 if 條件式會把 2 者都看成 false
+    if (NumberCurrentOperand) {
+      this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    }
   }
 
   //計算機的數字判斷
@@ -102,6 +110,15 @@ class Calculator {
     }
   }
 
+  defaultDisplay() {
+    const defaultValue = this.currentOperandTextElement.innerText
+
+    if (this.defaultValue == null) {
+      this.currentOperandTextElement.innerText = "0"
+      console.log(this.defaultValue + "預設值")
+    }
+  }
+
   //計算結果的顯示
   updateDisplay() {
     //this.currentOperandTextElement.innerText = this.currentOperand
@@ -134,6 +151,7 @@ numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     calculator.appendNum(button.innerText)
     calculator.updateDisplay()
+
   })
 })
 
@@ -167,4 +185,5 @@ deleteButton.addEventListener('click', () => {
 factorialButton.addEventListener('click', () => {
   calculator.getfactorial(parseFloat(calculator.currentOperand))
   calculator.updateDisplay()
-})  
+})
+
