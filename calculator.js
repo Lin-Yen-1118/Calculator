@@ -51,16 +51,20 @@ class Calculator {
     let computation
     const prev = parseFloat(this.previousOperand)
     const current = parseFloat(this.currentOperand)
+
     if (isNaN(prev) || isNaN(current)) return
+
+    const digit = this.getDigit(this.operation)
+    console.log(this.getDigit(this.operation));
     switch (this.operation) {
       case '+':
-        computation = prev + current
+        computation = this.formatFloat(prev + current, digit)
         break
       case '-':
-        computation = prev - current
+        computation = this.formatFloat(prev - current, digit)
         break
       case '*':
-        computation = prev * current
+        computation = this.formatFloat(prev * current, digit)
         break
       case '÷':
         computation = prev / current
@@ -73,6 +77,13 @@ class Calculator {
     this.previousOperand = ''
   }
 
+  //解決浮點數問題
+  //
+  formatFloat(f, digit) {
+    let m = Math.pow(10, digit);
+    return parseInt(f * m, 10) / m;
+  }
+
   //階層式計算
   //只能是正整數，負數或是0都回傳1
   getfactorial(current) {
@@ -82,10 +93,39 @@ class Calculator {
     }
     this.currentOperand = this.factorial(current)
   }
+
   //階層式計算公式
   factorial(num) {
     if (num <= 1) return 1
     return num * this.factorial(num - 1)
+  }
+
+  getDigit(operation) {
+    // this.previousOperand.includes('.') && this.currentOperand.includes('.') 判斷是否小數計算
+    // 是的話 找出小數點後位數最長的length 當作 計算 this.formatFloat 的參數 digit
+    // 否的話 this.formatFloat 的參數 digit 傳 1
+
+    const lengthGroup = [String(this.previousOperand).length, String(this.previousOperand).length]
+    const isFloatCal = this.previousOperand.includes('.') && this.currentOperand.includes('.')
+    let digit = 1
+
+    switch (operation) {
+      case '+':
+        digit = isFloatCal ? Math.max(...lengthGroup) : 1
+        break
+      case '-':
+        digit = isFloatCal ? Math.max(...lengthGroup) : 1
+        break
+      case '*':
+        digit = isFloatCal ? [...lengthGroup].reduce((a, b) => a + b, 0) : 1
+        break
+      case '÷':
+        digit = isFloatCal ? [...lengthGroup].reduce((a, b) => Math.abs(a - b), 0) : 1
+        break
+      default:
+        return
+    }
+    return digit
   }
 
   getDisplayNum(number) {
@@ -107,15 +147,6 @@ class Calculator {
       return `${integerDisplay}.${decimalDigits}`
     } else {
       return integerDisplay
-    }
-  }
-
-  defaultDisplay() {
-    const defaultValue = this.currentOperandTextElement.innerText
-
-    if (this.defaultValue == null) {
-      this.currentOperandTextElement.innerText = "0"
-      console.log(this.defaultValue + "預設值")
     }
   }
 
