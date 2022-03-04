@@ -36,6 +36,12 @@ class Calculator {
 
   //計算機的符號判斷
   chooseOperation(operation) {
+    if (this.currentOperand !== '' && this.previousOperand !== '') {
+      this.compute()
+      this.previousOperand = this.currentOperand
+      this.currentOperand = ''
+    }
+
     this.operation = operation
     if (this.currentOperand === '') return
     if (this.previousOperand !== '') {
