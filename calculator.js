@@ -36,14 +36,26 @@ class Calculator {
 
   //計算機的符號判斷
   chooseOperation(operation) {
+    this.operation = operation
     if (this.currentOperand === '') return
     if (this.previousOperand !== '') {
       this.compute()
     }
-    this.operation = operation
+
+
     this.previousOperand = this.currentOperand
     this.currentOperand = ''
+
   }
+  //如點擊新的運算元 要覆寫原本的運算元
+  // changeOperation(operation) {
+
+  //   this.operation = operation
+  //   this.previousOperand = this.currentOperand
+  //   this.currentOperand = ''
+
+  // }
+
 
   //計算判斷
   //用parseFloat()將字串轉成數字
@@ -55,7 +67,7 @@ class Calculator {
     if (isNaN(prev) || isNaN(current)) return
 
     const digit = this.getDigit(this.operation)
-    console.log(this.getDigit(this.operation));
+
     switch (this.operation) {
       case '+':
         computation = this.formatFloat(prev + current, digit)
@@ -106,7 +118,7 @@ class Calculator {
     // 否的話 this.formatFloat 的參數 digit 傳 1
 
     const lengthGroup = [String(this.previousOperand).length, String(this.previousOperand).length]
-    const isFloatCal = this.previousOperand.includes('.') && this.currentOperand.includes('.')
+    const isFloatCal = String(this.previousOperand).includes('.') && String(this.currentOperand).includes('.')
     let digit = 1
 
     switch (operation) {
